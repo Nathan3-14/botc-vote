@@ -1,5 +1,6 @@
 from flask import Flask, redirect, render_template, request
 import json
+from datetime import datetime
 
 app = Flask(__name__)
 SCRIPTS = ["Trouble Brewing", "Bad Moon Rising", "Sects and Violets"]
@@ -9,19 +10,19 @@ def index():
     name = request.args.get("name", "")
     message = request.args.get("message", "")
     current_votes = []
-    # if name != "":
-    #     current_votes = json.load(open("votes.json", "r"))[name]
+    if name != "":
+        current_votes = json.load(open("votes.json", "r"))[name]
     return render_template("index.jinja", available_scripts=SCRIPTS, name=name, message=message, current_votes=current_votes)
 
 @app.route("/vote/", methods=["POST"])
 def vote():
     selected_scripts = request.form.getlist("script_checkbox")
     name = request.form.get("name").lower().replace(" ", "") #type:ignore
-    print(f"{name} voted for {selected_scripts}")
+    print(f"LOG ({datetime.now().strftime('%H:%M:%S')}): {name} voted for {selected_scripts}")
 
-    # data = json.load(open("votes.json", "r"))
-    # data[name] = selected_scripts
-    # json.dump(data, open("votes.json", "w"), indent=4)
+    data = json.load(open("votes.json", "r"))
+    data[name] = selected_scripts
+    json.dump(data, open("votes.json", "w"), indent=4)
     
     return redirect(f"/?name={name}&message=Your+vote+has+been+cast%21")
 
