@@ -10,7 +10,8 @@
 {% endif %}
 
 <form action="/vote" method="post">
-    <input type="text" name="name" placeholder="Your Name" value="{{ name }}" required oninput="filter_options(this.value);"><br>
+    <label for="name">Name:</label><input type="text" name="name" placeholder="Your Name" value="{{ name }}" required><br>
+    <input type="text" name="filter" placeholder="Search..." oninput="filter_options(this.value);"><br>
 
     {% for script_name in available_scripts %}
     <label name="script" value="{{ script_name }}">
