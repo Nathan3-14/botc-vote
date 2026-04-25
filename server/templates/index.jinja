@@ -10,14 +10,15 @@
 {% endif %}
 
 <form action="/vote" method="post">
-    <label for="name">Name:</label><input type="text" name="name" placeholder="Your Name" value="{{ name }}" required><br>
-    <input type="text" name="filter" placeholder="Search..." oninput="filter_options(this.value);"><br>
+    <label for="name">Name:</label> <input type="text" name="name" placeholder="Your Name" value="{{ name }}" required><br>
+    <label for="filter">Search:</label> <input type="text" name="filter" placeholder="Search..." oninput="filter_options(this.value);"><br><br>
 
     {% for script_name in available_scripts %}
     <label name="script" value="{{ script_name }}">
         <input type="checkbox" name="script_checkbox" value="{{ script_name }}" {% if script_name in current_votes %}checked{% endif %}> {{ script_name }}<br>
     </label>
     {% endfor %}
+    <br>
 
     <input type="submit" value="Cast Vote!">
 </form>
