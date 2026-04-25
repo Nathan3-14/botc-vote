@@ -1,1 +1,1 @@
-waitress-serve --host 0.0.0.0 main:app
+/usr/bin/waitress-serve --host 0.0.0.0 main:app
