@@ -11,7 +11,10 @@ def index():
     message = request.args.get("message", "")
     current_votes = []
     if name != "":
-        current_votes = json.load(open("votes.json", "r"))[name]
+        try:
+            current_votes = json.load(open("votes.json", "r"))[name]
+        except KeyError:
+            pass
     return render_template("index.jinja", available_scripts=SCRIPTS, name=name, message=message, current_votes=current_votes)
 
 @app.route("/vote/", methods=["POST"])
