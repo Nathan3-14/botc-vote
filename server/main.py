@@ -29,9 +29,9 @@ def vote():
     
     return redirect(f"/?name={name}&message=Your+vote+has+been+cast%21%20You+can+change+it+below.")
 
-@app.route("/scripts/<string:script_name>/")
-def script(script_name: str):
-    return redirect(f"https://raw.githubusercontent.com/nathan3-14/botc/refs/heads/main/scripts/{script_name}/{script_name}.png")
+# @app.route("/scripts/<string:script_name>/")
+# def script(script_name: str):
+#     return redirect(f"https://raw.githubusercontent.com/nathan3-14/botc/refs/heads/main/scripts/{script_name}/{script_name}.png")
 
 @app.route("/results/")
 def results():

@@ -8,7 +8,7 @@
 <h3><a href="/">Back</a></h3>
 <ol>
 {% for script, votes in votes.items()%}
-    <li><a href="/scripts/{{ script }}">{{ script.replace("_", " ").title() }}</a>: {{ votes }}</li>
+    <li>{{ script.replace("_", " ").title() }}: {{ votes }}</li>
 {% endfor %}
 </ol>
 {% endblock %}
