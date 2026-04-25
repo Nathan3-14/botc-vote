@@ -1,0 +1,13 @@
+{% extends "base.jinja "%}
+{% block head %}
+<title>Results</title>
+{% endblock %}
+
+{% block body %}
+<h1>Results</h1>
+<ol>
+{% for script, votes in votes.items()%}
+    <li><a href="/scripts/{{ script }}">{{ script }}</a>: {{ votes }}</li>
+{% endfor %}
+</ol>
+{% endblock %}

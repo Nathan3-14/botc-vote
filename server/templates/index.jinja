@@ -1,0 +1,22 @@
+{%extends "base.jinja"%}
+{% block head %}
+<title>Document</title>
+{% endblock %}
+
+{% block body %}
+<h1>Pick your Favourite Scripts!</h1>
+{% if message != " "%}
+<h3>{{message}}</h3>
+{% endif %}
+
+<form action="/vote" method="post">
+    <input type="text" name="name" placeholder="Your Name" value="{{ name }}" required><br>
+
+    {% for script_name in available_scripts %}
+    <input type="checkbox" name="script" value="{{ script_name }}" {% if script_name in current_votes %}checked{% endif %}> {{ script_name }}<br>
+    {% endfor %}
+
+    <input type="submit" value="Cast Vote!">
+</form>
+<script src="/static/js/votes.js"></script>
+{% endblock %}
