@@ -27,7 +27,7 @@ def vote():
     data[name] = selected_scripts
     json.dump(data, open("votes.json", "w"), indent=4)
     
-    return redirect(f"/?name={name}&message=Your+vote+has+been+cast%21")
+    return redirect(f"/?name={name}&message=Your+vote+has+been+cast%21%20You+can+change+it+below.")
 
 @app.route("/scripts/<string:script_name>/")
 def script(script_name: str):
