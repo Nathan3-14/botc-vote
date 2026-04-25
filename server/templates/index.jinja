@@ -14,7 +14,7 @@
 
     {% for script_name in available_scripts %}
     <label name="script" value="{{ script_name }}">
-        <input type="checkbox" name="script_checkbox" {% if script_name in current_votes %}checked{% endif %}> {{ script_name }}<br>
+        <input type="checkbox" name="script_checkbox" value="{{ script_name }}" {% if script_name in current_votes %}checked{% endif %}> {{ script_name }}<br>
     </label>
     {% endfor %}
 
