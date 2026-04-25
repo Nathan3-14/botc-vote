@@ -4,7 +4,64 @@
     <title>Vote for your Favourite Scripts!</title>
 </head>
 <body>
-    <p>If you are not redirected, click <a href="voting ip">here!</a></p>
-    <script>//redirect to voting ip</script>
+    <input type="text" name="filter" placeholder="Search..." oninput="filter_options(this.value.toLowerCase())"><br>
+
+    <!-- <section id="scripts">
+        <div><input type="checkbox" name="script" value="Trouble Brewing">
+        <label for="script" value="Trouble Brewing">Trouble Brewing</label></div><br>
+        <div><input type="checkbox" name="script" value="Bad Moon Rising">
+        <label for="script" value="Bad Moon Rising">Bad Moon Rising</label></div><br>
+        <div><input type="checkbox" name="script" value="Sects and Violets">
+        <label for="script" value="Sects and Violets">Sects and Violets</label></div><br>
+        <div><input type="checkbox" name="script" value="Kaboom">
+        <label for="script" value="Kaboom">Kaboom</label></div><br>
+        <div><input type="checkbox" name="script" value="The Minotaur's Labyrinth">
+        <label for="script" value="The Minotaur's Labyrinth">The Minotaur's Labyrinth</label></div><br>
+    </section> -->
+
+    <label name="script">
+        <input type="checkbox" value="Trouble Brewing">
+        Trouble Brewing
+    </label><br>
+    <label name="script">
+        <input type="checkbox" value="Bad Moon Rising">
+        Bad Moon Rising
+    </label><br>
+    <label name="script">
+        <input type="checkbox" value="Sects and Violets">
+        Sects and Violets
+    </label><br>
+    <label name="script">
+        <input type="checkbox" value="Kaboom">
+        Kaboom
+    </label><br>
+    <label name="script">
+        <input type="checkbox" value="The Minotaur's Labyrinth">
+        The Minotaur's Labyrinth
+    </label><br>
+
+    <script>
+        const scripts = [
+            "Trouble Brewing",
+            "Bad Moon Rising",
+            "Sects and Violets",
+            "Kaboom",
+            "The Minotaur's Labyrinth"
+        ];
+        const filter_options = (filter_value) => {
+            for (const script of scripts) {
+                var script_value = script_name.toLowerCase();
+                
+                console.log(`filtering ${script_value} with ${filter_value}`);
+                if (script_value.includes(filter_value)) {
+                    console.log("showing");
+                    Document.getElementsByValue.style.display = "block";
+                } else {
+                    console.log("hiding");
+                    script.style.display = "none";
+                }
+            }
+        }
+    </script>
 </body>
 </html>

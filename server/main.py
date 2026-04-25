@@ -16,12 +16,12 @@ def index():
 @app.route("/vote/", methods=["POST"])
 def vote():
     selected_scripts = request.form.getlist("script")
-    name: str = request.form.get("name").lower().replace(" ", "") #type:ignore
+    name = request.form.get("name").lower().replace(" ", "") #type:ignore
     print(f"{name} voted for {selected_scripts}")
 
-    data = json.load(open("votes.json", "r"))
-    data[name] = selected_scripts
-    json.dump(data, open("votes.json", "w"), indent=4)
+    # data = json.load(open("votes.json", "r"))
+    # data[name] = selected_scripts
+    # json.dump(data, open("votes.json", "w"), indent=4)
     
     return redirect(f"/?name={name}&message=Your+vote+has+been+cast%21")
 
@@ -32,7 +32,7 @@ def script(script_name: str):
 @app.route("/results/")
 def results():
     vote_totals = {}
-    for voter, votes in json.load(open("votes.json", "r")).items():
+    for _voter, votes in json.load(open("votes.json", "r")).items():
         for voted_for_script in votes:
             if voted_for_script in vote_totals.keys():
                 vote_totals[voted_for_script] += 1
