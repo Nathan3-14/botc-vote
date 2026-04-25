@@ -15,7 +15,7 @@ def index():
 
 @app.route("/vote/", methods=["POST"])
 def vote():
-    selected_scripts = request.form.getlist("script")
+    selected_scripts = request.form.getlist("script_checkbox")
     name = request.form.get("name").lower().replace(" ", "") #type:ignore
     print(f"{name} voted for {selected_scripts}")
 

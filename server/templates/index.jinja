@@ -13,8 +13,8 @@
     <input type="text" name="name" placeholder="Your Name" value="{{ name }}" required><br>
 
     {% for script_name in available_scripts %}
-    <label name="script">
-        <input type="checkbox" value="{{ script_name }}" {% if script_name in current_votes %}checked{% endif %}> {{ script_name }}<br>
+    <label name="script" value="{{ script_name }}">
+        <input type="checkbox" name="script_checkbox" {% if script_name in current_votes %}checked{% endif %}> {{ script_name }}<br>
     </label>
     {% endfor %}
 
