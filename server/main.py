@@ -42,4 +42,5 @@ def results():
     vote_totals = dict(sorted(vote_totals.items(), key=lambda item: item[1], reverse=True))
     return render_template("results.jinja", votes=vote_totals)
 
-app.run(port=8080, debug=True)
+if __name__ == "__main__":
+    app.run(port=8080, debug=True)
