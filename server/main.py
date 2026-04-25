@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 
 app = Flask(__name__)
-SCRIPTS = ["Trouble Brewing", "Bad Moon Rising", "Sects and Violets"]
+SCRIPTS = json.load(open("options.json", "r"))
 
 @app.route("/")
 def index():
