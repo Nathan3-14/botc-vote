@@ -16,7 +16,7 @@
     {% for script_set in available_scripts %}
     <label name="script" value="{{ script_set }}">
         <input type="checkbox" name="script_checkbox" value="{{ script_set }}" {% if script_set in current_votes %}checked{% endif %}>
-         {% for script in script_set.split(", ") %}<a href="/scripts/{{script}}">{{ script.replace("_", " ").title() }}</a> {% endfor %}
+         {% for script in script_set.split(", ") %}<a href="/scripts/{{script}}" target="_blank">{{ script.replace("_", " ").title() }}</a> {% endfor %}
         <br>
     </label>
     {% endfor %}

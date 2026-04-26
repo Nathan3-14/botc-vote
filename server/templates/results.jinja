@@ -9,7 +9,7 @@
 <ol>
 {% for script_set, vote_count in votes.items()%}
     <li>
-        {% for script in script_set.split(", ") %}<a href="/scripts/{{script}}">{{ script.replace("_", " ").title() }}</a> {% endfor %}
+        {% for script in script_set.split(", ") %}<a href="/scripts/{{script}}" target="_blank">{{ script.replace("_", " ").title() }}</a> {% endfor %}
         : {{ vote_count }}
     </li>
 {% endfor %}
