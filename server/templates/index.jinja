@@ -13,11 +13,14 @@
     <label for="name">Name:</label> <input type="text" name="name" placeholder="Your Name" value="{{ name }}" required><br>
     <label for="filter">Search:</label> <input type="text" name="filter" placeholder="Search..." oninput="filter_options(this.value);"><br><br>
 
-    {% for script_name in available_scripts %}
-    <label name="script" value="{{ script_name }}">
-        <input type="checkbox" name="script_checkbox" value="{{ script_name }}" {% if script_name in current_votes %}checked{% endif %}> {{ script_name.replace("_", " ").title() }}<br>
+    {% for script_set in available_scripts %}
+    <label name="script" value="{{ script_set }}">
+        <input type="checkbox" name="script_checkbox" value="{{ script_set }}" {% if script_set in current_votes %}checked{% endif %}>
+         {% for script in script_set.split(", ") %}<a href="/scripts/{{script}}">{{ script.replace("_", " ").title() }}</a> {% endfor %}
+        <br>
     </label>
     {% endfor %}
+    
     <br>
 
     <input type="submit" value="Cast Vote!">
