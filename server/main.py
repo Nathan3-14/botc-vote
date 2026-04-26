@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request
+from flask import Flask, redirect, render_template, request, make_response
 import json
 from datetime import datetime
 
@@ -29,10 +29,6 @@ def vote():
     
     return redirect(f"/?name={name}&message=Your+vote+has+been+cast%21%20You+can+change+it+below.")
 
-@app.route("/scripts/<string:script_name>/")
-def script(script_name: str):
-    return redirect(f"https://raw.githubusercontent.com/nathan3-14/botc/refs/heads/main/scripts/{script_name}/{script_name}.png")
-
 @app.route("/results/")
 def results():
     vote_totals = {}
@@ -45,6 +41,27 @@ def results():
     
     vote_totals = dict(sorted(vote_totals.items(), key=lambda item: item[1], reverse=True))
     return render_template("results.jinja", votes=vote_totals)
+
+
+
+@app.route("/scripts/<string:script_name>/")
+def script(script_name: str):
+    return redirect(f"https://raw.githubusercontent.com/nathan3-14/botc/refs/heads/main/scripts/{script_name}/{script_name}.png")
+
+
+
+@app.route("/dev1721/")
+def dev():
+    return render_template("dev.jinja", message=request.args.get("message", ""))
+
+@app.route("/dev1721/see_vote_json/")
+def see_vote_json():
+    return make_response(json.load(open("votes.json", "r")))
+
+@app.route("/dev1721/reset_vote_json/")
+def reset_vote_json():
+    json.dump({}, open("votes.json", "w"))
+    return redirect("/dev1721/?message=Vote+json+reset")
 
 if __name__ == "__main__":
     app.run(port=8080, debug=True)
