@@ -39,7 +39,7 @@ def suggest():
         script_name_fixed = script_name.lower().replace(" ", "_") #type:ignore
         scripts = set(json.load(open("suggested_scripts.json", "r")))
         scripts.add(script_name_fixed)
-        json.dump(list(scripts), open("suggested_scripts.json", "r"))
+        json.dump(list(scripts), open("suggested_scripts.json", "w"))
         return redirect(f"/suggest?message=%27{script_name}%27+suggested")
     else:
         return redirect(f"/?message=Incorrect+method+for+%2Fsuggest%2F+%28{method}%29")
