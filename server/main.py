@@ -124,7 +124,7 @@ def access_log(log_file: str):
 def reset_log(log_file: str):
     open(f"logs/{log_file}", "w").close()
     log(f"{log_file} reset", "warn")
-    return render_template("logs.jinja", message=f"{log_file} deleted successfully")
+    return render_template("logs.jinja", message=f"{log_file} reset successfully")
 
 if __name__ == "__main__":
     app.run(port=8080, debug=True)
