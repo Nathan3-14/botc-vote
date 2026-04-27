@@ -29,6 +29,21 @@ def vote():
     
     return redirect(f"/?name={name}&message=Your+vote+has+been+cast%21%20You+can+change+it+below.")
 
+@app.route("/suggest/", methods=["GET", "POST"])
+def suggest():
+    method = request.method
+    if method == "GET":
+        return render_template("suggest.jinja", message=request.args.get("message", ""))
+    elif method == "POST":
+        script_name = request.form.get("suggestion")
+        script_name_fixed = script_name.lower().replace(" ", "_") #type:ignore
+        scripts = set(json.load(open("suggested_scripts.json", "r")))
+        scripts.add(script_name_fixed)
+        json.dump(scripts, open("suggested_scripts.json", "r"))
+        return redirect(f"/suggest?message=%27{script_name}%27+suggested")
+    else:
+        return redirect(f"/?message=Incorrect+method+for+%2Fsuggest%2F+%28{method}%29")
+
 @app.route("/results/")
 def results():
     vote_totals = {}

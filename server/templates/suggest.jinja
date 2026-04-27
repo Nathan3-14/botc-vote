@@ -1,0 +1,13 @@
+{% extends "base.jinja" %}
+
+{% block head %}
+<title>Suggest a Script!</title>
+{% endblock %}
+
+{% block body %}
+<h1>Suggest a Script!</h1>
+<form action="/suggest" method="post">
+    <input type="text" placeholder="Trouble Brewing" name="suggestion">
+    <input type="submit" value="Submit!">
+</form>
+{% endblock %}
