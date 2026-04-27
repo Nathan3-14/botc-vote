@@ -2,6 +2,7 @@ body {
     background-color: #503754;
     color: white;
     font-family: "Calibri";
+    margin: 0;
 }
 
 a {
@@ -19,7 +20,7 @@ a {
     border-radius: 5px;
     
     justify-content: space-between;
-    
+
     margin: 0;
     top: 0;
     left: 0;
