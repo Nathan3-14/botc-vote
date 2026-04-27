@@ -78,5 +78,14 @@ def reset_vote_json():
     json.dump({}, open("votes.json", "w"))
     return redirect("/dev1721/?message=Vote+json+reset")
 
+@app.route("/dev1721/see_suggest_json/")
+def see_suggest_json():
+    return make_response(json.load(open("suggested_scripts.json", "r")))
+
+@app.route("/dev1721/reset_suggest_json/")
+def reset_suggest_json():
+    json.dump([], open("suggested_scripts.json", "w"))
+    return redirect("/dev1721/?message=Suggested+json+reset")
+
 if __name__ == "__main__":
     app.run(port=8080, debug=True)
