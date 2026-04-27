@@ -11,7 +11,7 @@ def log(message: str, type: Literal["error", "info", "warn"]="info") -> None:
     now = datetime.now()
     year = now.strftime("%Y-%m-%d")
     time = now.strftime("%H:%M:%S")
-    message_formatted = f"[{type.ljust(5)}] {time} - {message}"
+    message_formatted = f"[{type}] {time} - {message}"
     
     if not os.path.exists("logs"):
         os.mkdir("logs")
