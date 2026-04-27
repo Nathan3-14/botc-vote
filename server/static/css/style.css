@@ -9,6 +9,10 @@ a {
     color: bisque;
 }
 
+h2, h3, form, a {
+    margin: default;
+}
+
 #top-bar {
     background-color: #362838;
 
