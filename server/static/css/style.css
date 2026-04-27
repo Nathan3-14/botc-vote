@@ -32,6 +32,10 @@ h2, h3, form {
     right: 0;
 }
 
+#top-bar > h3 {
+    margin-left: auto
+}
+
 #top-bar > h1, #top-bar > h3 {
     margin: 0;
     padding: 5px;
