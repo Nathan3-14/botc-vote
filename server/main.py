@@ -1,3 +1,4 @@
+import os
 from typing import Literal
 from flask import Flask, redirect, render_template, request, make_response
 import json
@@ -11,7 +12,11 @@ def log(message: str, type: Literal["error", "info", "warn"]="info") -> None:
     year = now.strftime("%Y-%m-%d")
     time = now.strftime("%H:%M:%S")
     message_formatted = f"[{type.ljust(5)}] {time} - {message}"
-    open(f"logs/{year}.log", "a").write(message_formatted)
+    
+    if not os.path.exists(f"logs/{year}.log"):
+        open(f"logs/{year}.log", "w")
+    open(f"logs/{year}.log", "a").write(message_formatted + "\n")
+    
     print(message_formatted)
 
 @app.route("/")
