@@ -11,4 +11,5 @@ a {
 #top-bar {
     background-color: #362838;
     position: sticky;
+    top: 0;
 }
