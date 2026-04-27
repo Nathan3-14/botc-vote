@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block body %}
-{% for log in logs|sorted %}
+{% for log in logs|sort %}
 <a href="/dev1721/logs/{{log}}">{{log}}</a>
 {% endfor %}
 {% endblock %}
