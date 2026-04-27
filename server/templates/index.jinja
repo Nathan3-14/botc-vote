@@ -4,6 +4,7 @@
 
 {% block body %}
 <h2>Pick your Favourite Scripts!</h2>
+<h3>See the results <a href="/results">here!</a></h3>
 <form action="/vote" method="post">
     <label for="name">Name:</label> <input type="text" name="name" placeholder="Your Name" value="{{ name }}" required><br>
     <label for="filter">Search:</label> <input type="text" name="filter" placeholder="Search..." oninput="filter_options(this.value);"><br><br>
@@ -20,7 +21,5 @@
 
     <input type="submit" value="Cast Vote!">
 </form>
-
-<h3>See the results <a href="/results">here!</a></h3>
 <script src="/static/js/filter.js"></script>
 {% endblock %}
