@@ -24,7 +24,7 @@ h2, h3, form, a {
     border-radius: 0px 0px 5px 5px;
     
     justify-content: space-between;
-    vertical-align: middle;
+    align-items: center;
 
     margin: 0;
     top: 0;
