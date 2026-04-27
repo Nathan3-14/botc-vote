@@ -12,6 +12,7 @@ a {
     background-color: #362838;
     position: sticky;
     top: 0;
-    width: 100%;
-    height: 5%;
+    width: 100vw;
+    height: 30px;
+    border-radius: 5px;
 }
