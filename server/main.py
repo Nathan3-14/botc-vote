@@ -22,14 +22,13 @@ def log(message: str, type: Literal["error", "info", "warn"]="info") -> None:
 @app.route("/")
 def index():
     name = request.args.get("name", "")
-    message = request.args.get("message", "")
     current_votes = []
     if name != "":
         try:
             current_votes = json.load(open("votes.json", "r"))[name]
         except KeyError:
             pass
-    return render_template("index.jinja", available_scripts=SCRIPTS, name=name, message=message, current_votes=current_votes)
+    return render_template("index.jinja", available_scripts=SCRIPTS, name=name, current_votes=current_votes, message=request.args.get("message", ""))
 
 @app.route("/vote/", methods=["POST"])
 def vote():
@@ -73,7 +72,7 @@ def results():
     
     vote_totals = dict(sorted(vote_totals.items(), key=lambda item: item[1], reverse=True))
 
-    return render_template("results.jinja", votes=vote_totals)
+    return render_template("results.jinja", votes=vote_totals, message=request.args.get("message", ""))
 
 
 
@@ -113,7 +112,7 @@ def reset_suggest_json():
 @app.route("/dev1721/logs")
 def access_logs():
     log("Logs list accessed", "warn")
-    return render_template("logs.jinja", logs=os.listdir("logs"))
+    return render_template("logs.jinja", logs=os.listdir("logs"), message=request.args.get("message", ""))
 
 @app.route("/dev1721/logs/get/<string:log_file>")
 def access_log(log_file: str):
