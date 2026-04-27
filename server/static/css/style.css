@@ -10,7 +10,7 @@ a {
 }
 
 h2, h3, form, a {
-    margin: default;
+    margin: 8px;
 }
 
 #top-bar {
