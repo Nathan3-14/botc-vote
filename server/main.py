@@ -1,9 +1,18 @@
+from typing import Literal
 from flask import Flask, redirect, render_template, request, make_response
 import json
 from datetime import datetime
 
 app = Flask(__name__)
 SCRIPTS = json.load(open("options.json", "r"))
+
+def log(message: str, type: Literal["error", "info", "warn"]="info") -> None:
+    now = datetime.now()
+    year = now.strftime("%Y-%m-%d")
+    time = now.strftime("%H:%M:%S")
+    message_formatted = f"[{type.ljust(5)}] {time} - {message}"
+    open(f"logs/{year}.log", "a").write(message_formatted)
+    print(message_formatted)
 
 @app.route("/")
 def index():
@@ -21,12 +30,12 @@ def index():
 def vote():
     selected_scripts = request.form.getlist("script_checkbox")
     name = request.form.get("name").lower().replace(" ", "") #type:ignore
-    print(f"LOG ({datetime.now().strftime('%H:%M:%S')}): {name} voted for {selected_scripts}")
 
     data = json.load(open("votes.json", "r"))
     data[name] = selected_scripts
     json.dump(data, open("votes.json", "w"), indent=4)
     
+    log(f"{name} voted for {selected_scripts}")
     return redirect(f"/?name={name}&message=Your+vote+has+been+cast%21%20You+can+change+it+below.")
 
 @app.route("/suggest/", methods=["GET", "POST"])
@@ -40,8 +49,11 @@ def suggest():
         scripts = set(json.load(open("suggested_scripts.json", "r")))
         scripts.add(script_name_fixed)
         json.dump(list(scripts), open("suggested_scripts.json", "w"))
+        
+        log(f"{script_name} was suggested")
         return redirect(f"/suggest?message=%27{script_name}%27+suggested")
     else:
+        log(f"Method {method} was used on /suggest/", "error")
         return redirect(f"/?message=Incorrect+method+for+%2Fsuggest%2F+%28{method}%29")
 
 @app.route("/results/")
@@ -55,6 +67,7 @@ def results():
                 vote_totals[voted_for_script] = 1
     
     vote_totals = dict(sorted(vote_totals.items(), key=lambda item: item[1], reverse=True))
+
     return render_template("results.jinja", votes=vote_totals)
 
 
@@ -67,24 +80,29 @@ def script(script_name: str):
 
 @app.route("/dev1721/")
 def dev():
+    log("Dev page accessed", "warn")
     return render_template("dev.jinja", message=request.args.get("message", ""))
 
 @app.route("/dev1721/see_vote_json/")
 def see_vote_json():
+    log("Vote JSON accessed", "warn")
     return make_response(json.load(open("votes.json", "r")))
 
 @app.route("/dev1721/reset_vote_json/")
 def reset_vote_json():
     json.dump({}, open("votes.json", "w"))
+    log("Vote JSON reset", "warn")
     return redirect("/dev1721/?message=Vote+json+reset")
 
 @app.route("/dev1721/see_suggest_json/")
 def see_suggest_json():
+    log("Suggest JSON accessed", "warn")
     return make_response(json.load(open("suggested_scripts.json", "r")))
 
 @app.route("/dev1721/reset_suggest_json/")
 def reset_suggest_json():
     json.dump([], open("suggested_scripts.json", "w"))
+    log("Suggest JSON reset", "warn")
     return redirect("/dev1721/?message=Suggested+json+reset")
 
 if __name__ == "__main__":
