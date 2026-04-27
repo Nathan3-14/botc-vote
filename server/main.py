@@ -110,5 +110,13 @@ def reset_suggest_json():
     log("Suggest JSON reset", "warn")
     return redirect("/dev1721/?message=Suggested+json+reset")
 
+@app.route("/dev1721/logs")
+def access_logs():
+    return render_template("logs.jinja", logs=os.listdir("logs"))
+
+@app.route("/dev1721/logs/<string:log_file>")
+def access_log(log_file: str):
+    return make_response(open(f"logs/{log_file}", "r").read())
+
 if __name__ == "__main__":
     app.run(port=8080, debug=True)

@@ -1,0 +1,11 @@
+{% extends "base.jinja" %}
+
+{% block head %}
+<title>Logs</title>
+{% endblock %}
+
+{% block body %}
+{% for log in logs|sorted %}
+<a href="/dev1721/logs/{{log}}">{{log}}</a>
+{% endfor %}
+{% endblock %}
