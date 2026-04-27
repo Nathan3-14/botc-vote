@@ -116,7 +116,7 @@ def access_logs():
 
 @app.route("/dev1721/logs/<string:log_file>")
 def access_log(log_file: str):
-    return make_response(open(f"logs/{log_file}", "r").read())
+    return make_response(open(f"logs/{log_file}", "r").read().replace("\n", "<br>"))
 
 if __name__ == "__main__":
     app.run(port=8080, debug=True)
