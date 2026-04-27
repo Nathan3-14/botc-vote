@@ -15,7 +15,7 @@ def log(message: str, type: Literal["error", "info", "warn"]="info") -> None:
     
     # if not os.path.exists(f"logs/{year}.log"):
     #     open(f"logs/{year}.log", "w")
-    open(f"./logs/{year}.log", "a").write(message_formatted + "\n")
+    open(f"logs/{year}.log", "a+").write(message_formatted + "\n")
     
     print(message_formatted)
 
