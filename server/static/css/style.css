@@ -31,6 +31,6 @@ h2, h3, form, a {
     right: 0;
 }
 
-#top-bar > h1, h3 {
+#top-bar > h1, #top-bar > h3 {
     margin: 0;
 }
