@@ -1,8 +1,6 @@
 {% extends "base.jinja" %}
 
-{% block head %}
-<title>Logs</title>
-{% endblock %}
+{% block title %}Logs{% endblock %}
 
 {% block body %}
 {% for log in logs|sort %}

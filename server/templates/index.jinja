@@ -1,12 +1,9 @@
 {%extends "base.jinja"%}
 
-{% block head %}
-<title>Vote!</title>
-{% endblock %}
+{% block title %}Vote!{% endblock %}
 
 {% block body %}
-<h1>Pick your Favourite Scripts!</h1>
-<h3>{{message}}</h3>
+<h2>Pick your Favourite Scripts!</h2>
 <form action="/vote" method="post">
     <label for="name">Name:</label> <input type="text" name="name" placeholder="Your Name" value="{{ name }}" required><br>
     <label for="filter">Search:</label> <input type="text" name="filter" placeholder="Search..." oninput="filter_options(this.value);"><br><br>

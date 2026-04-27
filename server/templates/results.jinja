@@ -1,12 +1,8 @@
 {% extends "base.jinja" %}
 
-{% block head %}
-<title>Results</title>
-{% endblock %}
+{% block title %}Results{% endblock %}
 
 {% block body %}
-<h1>Results</h1>
-<h3>{{message}}</h3>
 <ol>
 {% for script_set, vote_count in votes.items()%}
     <li>
