@@ -6,6 +6,7 @@
 
 {% block body %}
 <h1>Suggest a Script!</h1>
+<h3>{{message}}</h3>
 <form action="/suggest" method="post">
     <input type="text" placeholder="Trouble Brewing" name="suggestion">
     <input type="submit" value="Submit!">

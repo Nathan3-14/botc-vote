@@ -1,14 +1,12 @@
 {%extends "base.jinja"%}
+
 {% block head %}
 <title>Vote!</title>
 {% endblock %}
 
 {% block body %}
 <h1>Pick your Favourite Scripts!</h1>
-{% if message != " "%}
 <h3>{{message}}</h3>
-{% endif %}
-
 <form action="/vote" method="post">
     <label for="name">Name:</label> <input type="text" name="name" placeholder="Your Name" value="{{ name }}" required><br>
     <label for="filter">Search:</label> <input type="text" name="filter" placeholder="Search..." oninput="filter_options(this.value);"><br><br>
