@@ -112,12 +112,18 @@ def reset_suggest_json():
 
 @app.route("/dev1721/logs")
 def access_logs():
-    log("Logs accessed", "warn")
+    log("Logs list accessed", "warn")
     return render_template("logs.jinja", logs=os.listdir("logs"))
 
-@app.route("/dev1721/logs/<string:log_file>")
+@app.route("/dev1721/logs/get/<string:log_file>")
 def access_log(log_file: str):
-    log(f"Log {log_file}  accessed", "warn")
+    log(f"{log_file} accessed", "warn")
+    return make_response(open(f"logs/{log_file}", "r").read().replace("\n", "<br>"))
+
+@app.route("/dev1721/logs/reset/<string:log_file>")
+def reset_log(log_file: str):
+    open(f"logs/{log_file}", "w").close()
+    log(f"{log_file} reset", "warn")
     return make_response(open(f"logs/{log_file}", "r").read().replace("\n", "<br>"))
 
 if __name__ == "__main__":
