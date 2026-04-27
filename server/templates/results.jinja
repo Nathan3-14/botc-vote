@@ -3,6 +3,9 @@
 {% block title %}Results{% endblock %}
 
 {% block body %}
+{% if votes|length == 0 %}
+<h3>No Votes have been Cast</h3>
+{% endif %}
 <ol>
 {% for script_set, vote_count in votes.items()%}
     <li>
