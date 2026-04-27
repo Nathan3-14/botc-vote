@@ -10,9 +10,22 @@ a {
 
 #top-bar {
     background-color: #362838;
+
     position: sticky;
-    top: 0;
+    display: flex;
+
     width: 100vw;
-    height: 30px;
+    height: fit-content;
     border-radius: 5px;
+    
+    justify-content: space-between;
+    
+    margin: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+#top-bar > h1, h3 {
+    margin: 0;
 }
