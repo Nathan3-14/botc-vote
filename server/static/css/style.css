@@ -7,3 +7,8 @@ body {
 a {
     color: bisque;
 }
+
+#top-bar {
+    background-color: #362838;
+    position: sticky;
+}

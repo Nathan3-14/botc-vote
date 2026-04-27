@@ -8,8 +8,7 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <h1>{{ self.title() }}</h1>
-    <h3><a href="/">Home</a></h3>
+    <div id="top-bar"><h1>{{ self.title() }}</h1><h3><a href="/">Home</a></h3></div>
     <h3>{{message}}</h3>
     {% block body %}{% endblock %}
 </body>
