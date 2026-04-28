@@ -24,9 +24,9 @@ a {color: bisque}
 #top-bar > h1 {margin-left: 10px}
 #top-bar > h3 {display: flex; justify-content: center}
 
-@media (min-width: 800px) {
+@media (max-width: 800px) {
     #top-bar {
-        grid-template-rows: 3;
+        grid-template-rows: 1fr 1fr 1fr;
         grid-template-columns: auto 40vw;
     }
     #top-bar > h1 {grid-row: 1 3;}
