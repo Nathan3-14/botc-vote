@@ -5,6 +5,6 @@
 {% block body %}
 {% for log in logs|sort %}
 <a href="/dev1721/logs/get/{{log}}">Get {{log}}</a>
- - <a href="/dev1721/logs/reset/{{log}}">Reset {{log}}</a>
+ - <a href="/dev1721/logs/reset/{{log}}">Reset {{log}}</a><br>
 {% endfor %}
 {% endblock %}
