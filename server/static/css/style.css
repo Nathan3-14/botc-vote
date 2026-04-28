@@ -13,7 +13,7 @@ a {color: bisque}
     width: 100vw;
     /* height: fit-content; */
     grid-template-rows: 1;
-    grid-template-columns: auto repeat(minmax(100px, 10vw), 3);
+    grid-template-columns: auto repeat(3, minmax(100px, 10vw));
     
     align-items: center;
     margin: -8px 0 0 -8px;
