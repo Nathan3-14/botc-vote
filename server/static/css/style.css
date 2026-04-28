@@ -11,9 +11,8 @@ a {color: bisque}
     top: 0;
     
     width: 100vw;
-    /* height: fit-content; */
     grid-template-rows: 1;
-    grid-template-columns: auto repeat(3, minmax(100px, 10vw));
+    grid-template-columns: auto 10vw 10vw 10vw;
     
     align-items: center;
     margin: -8px 0 0 -8px;
@@ -24,3 +23,11 @@ a {color: bisque}
 }
 #top-bar > h1 {margin-left: 10px}
 #top-bar > h3 {display: flex; justify-content: center}
+
+@media (min-width: 900px) {
+    #top-bar {
+        grid-template-columns: 3;
+        grid-template-rows: auto 40vw;
+    }
+    #top-bar > h1 {grid-row: 1 3;}
+}
