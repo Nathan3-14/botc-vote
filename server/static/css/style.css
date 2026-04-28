@@ -13,7 +13,7 @@ a {color: bisque}
     width: 100vw;
     /* height: fit-content; */
     grid-template-rows: 1;
-    grid-template-columns: 70vw 15vw 15vw;
+    grid-template-columns: 70vw 10vw 10vw 10vw;
     
     align-items: center;
     margin: -8px 0 0 -8px;
