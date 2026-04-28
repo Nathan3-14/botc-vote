@@ -11,7 +11,7 @@ a {color: bisque}
     top: 0;
     
     width: 100vw;
-    grid-template-rows: 1;
+    grid-template-rows: 10vh;
     grid-template-columns: auto 10vw 10vw 10vw;
     
     align-items: center;
@@ -26,7 +26,7 @@ a {color: bisque}
 
 @media (max-width: 800px) {
     #top-bar {
-        grid-template-rows: 8vh 8vh 8vh;
+        grid-template-rows: 4vh 4vh 4vh;
         grid-template-columns: auto 40vw;
     }
     #top-bar > h1 {grid-row: 1 / span 3;}
