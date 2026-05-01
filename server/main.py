@@ -5,7 +5,8 @@ import json
 from datetime import datetime
 
 app = Flask(__name__)
-SCRIPTS = json.load(open("options.json", "r"))
+SCRIPT_FILE = "options/all_scripts.json"
+SCRIPTS = json.load(open(SCRIPT_FILE, "r"))
 
 def log(message: str, type: Literal["error", "info", "warn"]="info") -> None:
     now = datetime.now()
