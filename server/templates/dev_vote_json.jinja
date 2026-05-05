@@ -1,0 +1,13 @@
+{% extends "dev_base.jinja" %}
+{% block body %}
+<a href="/dev1721/vote_json/download" style="color: lightgrey; font-size: large;"><i class="fa-solid fa-download"></i></a>
+<a onclick="reset()" style="color: red; font-size: large;"><i class="fa-solid fa-arrow-rotate-left"></i></a>
+<pre><code lang="json">{{vote_json}}</code></pre>
+<script>
+const reset = () => {
+    if (confirm("Reset Vote JSON?")) {
+        window.location.href = "/dev1721/vote_json/reset";
+    }
+}
+</script>
+{% endblock %}

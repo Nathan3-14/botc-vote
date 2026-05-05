@@ -5,10 +5,11 @@ body {
 }
 a {color: bisque}
 
-#top-bar {
+#nav-bar {
     position: sticky;
     display: grid;
     top: 0;
+    height: 10vh;
     
     width: 100vw;
     grid-template-rows: 10vh;
@@ -21,13 +22,14 @@ a {color: bisque}
     backdrop-filter: blur(5px);
     border-radius: 0 0 5px 5px;
 }
-#top-bar > h1 {margin-left: 10px}
-#top-bar > h3 {display: flex; justify-content: center}
+#nav-bar > h1 {margin-left: 10px}
+#nav-bar > h3 {display: flex; justify-content: center}
 
 @media (max-width: 800px) {
-    #top-bar {
-        grid-template-rows: 4vh 4vh 4vh;
-        grid-template-columns: auto 40vw;
+    #nav-bar {
+        height: 12vh;
+        grid-template-rows: 12vh;
+        grid-template-columns: repeat(3, 1fr);
     }
-    #top-bar > h1 {grid-row: 1 / span 3;}
+    #bav-bar > h1 {grid-row: 1 / span 3;}
 }

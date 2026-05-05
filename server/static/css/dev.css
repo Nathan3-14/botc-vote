@@ -1,0 +1,29 @@
+#dev-bar {
+    position: sticky;
+    display: grid;
+    top: 10vh;
+    height: 4vh;
+    
+    width: 100vw;
+    grid-template-rows: 4vh;
+    grid-template-columns: repeat(3, 1fr);
+    
+    align-items: center;
+    margin: -8px 0 0 -8px;
+
+    background-color: #2e2838cc;
+    backdrop-filter: blur(5px);
+    border-radius: 0 0 5px 5px;
+}
+#dev-bar > h3 {display: flex; justify-content: center}
+
+@media (max-width: 800px) {
+    #dev-bar {
+        top: 12vh;
+        height: 4vh;
+        grid-template-rows: 4vh;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+#nav-bar {border-radius: 0 !important}

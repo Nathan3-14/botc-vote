@@ -1,6 +1,6 @@
 import os
 from typing import Literal
-from flask import Flask, redirect, render_template, request, make_response
+from flask import Flask, redirect, render_template, request, make_response, send_file
 import json
 from datetime import datetime
 
@@ -88,27 +88,45 @@ def dev():
     log("Dev page accessed", "warn")
     return render_template("dev.jinja", message=request.args.get("message", ""))
 
-@app.route("/dev1721/see_vote_json/")
-def see_vote_json():
-    log("Vote JSON accessed", "warn")
-    return make_response(json.load(open("votes.json", "r")))
 
-@app.route("/dev1721/reset_vote_json/")
+
+@app.route("/dev1721/vote_json")
+def vote_json():
+    log("Vote JSON accessed", "warn")
+    raw_json = json.load(open("votes.json", "r"))
+    formatted_json = json.dumps(raw_json, indent=4)
+    return render_template("dev_vote_json.jinja", vote_json=formatted_json, message=request.args.get("message", ""))
+
+@app.route("/dev1721/vote_json/download")
+def download_vote_json():
+    return send_file("votes.json")
+
+@app.route("/dev1721/vote_json/reset")
 def reset_vote_json():
     json.dump({}, open("votes.json", "w"))
     log("Vote JSON reset", "warn")
-    return redirect("/dev1721/?message=Vote+json+reset")
+    return redirect("/dev1721/vote_json?message=Vote+JSON+Succesfully+Reset")
 
-@app.route("/dev1721/see_suggest_json/")
-def see_suggest_json():
+
+
+@app.route("/dev1721/suggest_json")
+def suggets_json():
     log("Suggest JSON accessed", "warn")
-    return make_response(json.load(open("suggested_scripts.json", "r")))
+    raw_json = json.load(open("suggested_scripts.json", "r"))
+    formatted_json = json.dumps(raw_json, indent=4)
+    return render_template("dev_suggest_json.jinja", suggest_json=formatted_json, message=request.args.get("message", ""))
 
-@app.route("/dev1721/reset_suggest_json/")
+@app.route("/dev1721/suggest_json/download")
+def download_suggest_json():
+    return send_file("suggested_scripts.json")
+
+@app.route("/dev1721/suggest_json/reset")
 def reset_suggest_json():
-    json.dump([], open("suggested_scripts.json", "w"))
+    json.dump({}, open("suggested_scripts.json", "w"))
     log("Suggest JSON reset", "warn")
-    return redirect("/dev1721/?message=Suggested+json+reset")
+    return redirect("/dev1721/suggest_json?message=Suggest+JSON+Succesfully+Reset")
+
+
 
 @app.route("/dev1721/logs")
 def access_logs():
@@ -125,6 +143,8 @@ def reset_log(log_file: str):
     open(f"logs/{log_file}", "w").close()
     log(f"{log_file} reset", "warn")
     return redirect(f"/dev1721/logs?message={log_file}+reset+successfully")
+
+
 
 if __name__ == "__main__":
     app.run(port=8080, debug=True)
