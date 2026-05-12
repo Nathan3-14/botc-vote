@@ -31,5 +31,5 @@ a {color: bisque}
         grid-template-rows: repeat(3, 4vh);
         grid-template-columns: auto 10vh;
     }
-    #bav-bar > h1 {grid-row: 1 / span 3;}
+    #nav-bar > h1 {grid-row: 1 / span 3;}
 }
