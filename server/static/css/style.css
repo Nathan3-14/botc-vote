@@ -28,8 +28,8 @@ a {color: bisque}
 @media (max-width: 800px) {
     #nav-bar {
         height: 12vh;
-        grid-template-rows: 12vh;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 4vh);
+        grid-template-columns: auto 10vh;
     }
     #bav-bar > h1 {grid-row: 1 / span 3;}
 }
