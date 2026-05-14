@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 
 app = Flask(__name__)
-SCRIPT_FILE = "options/all_scripts.json"
+SCRIPT_FILE = "options/3_overlaps.json"
 SCRIPTS = json.load(open(SCRIPT_FILE, "r"))
 
 def log(message: str, type: Literal["error", "info", "warn"]="info") -> None:
