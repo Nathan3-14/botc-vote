@@ -86,7 +86,7 @@ def script(script_name: str):
 @app.route("/dev1721/")
 def dev():
     log("Dev page accessed", "warn")
-    return render_template("dev.jinja", message=request.args.get("message", ""))
+    return render_template("dev/index.jinja", message=request.args.get("message", ""))
 
 
 
@@ -95,7 +95,7 @@ def vote_json():
     log("Vote JSON accessed", "warn")
     raw_json = json.load(open("votes.json", "r"))
     formatted_json = json.dumps(raw_json, indent=4)
-    return render_template("dev_vote_json.jinja", vote_json=formatted_json, message=request.args.get("message", ""))
+    return render_template("dev/vote_json.jinja", vote_json=formatted_json, message=request.args.get("message", ""))
 
 @app.route("/dev1721/vote_json/download")
 def download_vote_json():
@@ -114,7 +114,7 @@ def suggets_json():
     log("Suggest JSON accessed", "warn")
     raw_json = json.load(open("suggested_scripts.json", "r"))
     formatted_json = json.dumps(raw_json, indent=4)
-    return render_template("dev_suggest_json.jinja", suggest_json=formatted_json, message=request.args.get("message", ""))
+    return render_template("dev/suggest_json.jinja", suggest_json=formatted_json, message=request.args.get("message", ""))
 
 @app.route("/dev1721/suggest_json/download")
 def download_suggest_json():
@@ -131,7 +131,7 @@ def reset_suggest_json():
 @app.route("/dev1721/logs")
 def access_logs():
     log("Logs list accessed", "warn")
-    return render_template("logs.jinja", logs=os.listdir("logs"), message=request.args.get("message", ""))
+    return render_template("dev/logs.jinja", logs=os.listdir("logs"), message=request.args.get("message", ""))
 
 @app.route("/dev1721/logs/get/<string:log_file>")
 def access_log(log_file: str):
