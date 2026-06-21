@@ -82,14 +82,13 @@ def results():
     return render_template("results.jinja", votes=vote_totals, message=request.args.get("message", ""))
 
 
+@app.route("/scripts/")
+def scripts():
+    return render_template("scripts.jinja", scripts=UNIQUE_SCRIPTS)
 
 @app.route("/scripts/<string:script_name>/")
 def script(script_name: str):
     return redirect(f"https://raw.githubusercontent.com/nathan3-14/botc/refs/heads/main/scripts/{script_name}/{script_name}.png")
-
-@app.route("/scripts/")
-def scripts():
-    return render_template("scripts.jinja", scripts=UNIQUE_SCRIPTS)
 
 
 @app.route("/dev1721/")
