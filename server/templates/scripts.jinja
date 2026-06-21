@@ -1,0 +1,11 @@
+{% extends "base.jinja" %}
+
+{% block title %}Scripts{% endblock %}
+
+{% block body %}
+<ul>
+{% for script_name in scripts %}
+    <li><a href="/scripts/{{script}}" target="_blank">{{ script.replace("_", " ").title() }}</a></li>
+{% endfor %}
+</ul>
+{% endblock %}

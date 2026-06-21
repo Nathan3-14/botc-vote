@@ -1,12 +1,17 @@
 import os
-from typing import Literal
+from typing import List, Literal
 from flask import Flask, redirect, render_template, request, make_response, send_file
 import json
 from datetime import datetime
 
 app = Flask(__name__)
 SCRIPT_FILE = "options/3_overlaps.json"
-SCRIPTS = json.load(open(SCRIPT_FILE, "r"))
+OPTIONS = json.load(open(SCRIPT_FILE, "r"))
+
+UNIQUE_SCRIPTS = set([])
+for item in OPTIONS:
+    for sub_item in item.split(", "):
+        UNIQUE_SCRIPTS.add(sub_item)
 
 def log(message: str, type: Literal["error", "info", "warn"]="info") -> None:
     now = datetime.now()
@@ -20,6 +25,7 @@ def log(message: str, type: Literal["error", "info", "warn"]="info") -> None:
     
     print(message_formatted)
 
+
 @app.route("/")
 def index():
     name = request.args.get("name", "")
@@ -29,7 +35,7 @@ def index():
             current_votes = json.load(open("votes.json", "r"))[name]
         except KeyError:
             pass
-    return render_template("index.jinja", available_scripts=SCRIPTS, name=name, current_votes=current_votes, message=request.args.get("message", ""))
+    return render_template("index.jinja", available_scripts=OPTIONS, name=name, current_votes=current_votes, message=request.args.get("message", ""))
 
 @app.route("/vote/", methods=["POST"])
 def vote():
@@ -81,6 +87,9 @@ def results():
 def script(script_name: str):
     return redirect(f"https://raw.githubusercontent.com/nathan3-14/botc/refs/heads/main/scripts/{script_name}/{script_name}.png")
 
+@app.route("/scripts/")
+def scripts():
+    return render_template("scripts.jinja", scripts=UNIQUE_SCRIPTS)
 
 
 @app.route("/dev1721/")
