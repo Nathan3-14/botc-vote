@@ -9,7 +9,7 @@ a {color: bisque}
     position: sticky;
     display: grid;
     top: 0;
-    height: 10vh;
+    height: 13vh;
     
     width: 100vw;
     grid-template-rows: 10vh 3vh;
