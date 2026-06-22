@@ -34,9 +34,9 @@ a {color: bisque}
     #nav-bar {
         height: 12vh;
         grid-template-rows: repeat(3, 4vh);
-        grid-template-columns: auto 3vh;
+        grid-template-columns: auto 100px;
     }
     #nav-bar > h1 {grid-row: 1 / span 2;}
     #nav-bar > .link {grid-column: 1; grid-row: initial;}
-    #nav-bar > .next-session {grid-column: 1; grid-row: 3; text-align: left; margin-left: 10px;}
+    #nav-bar > .next-session {grid-column: 2; grid-row: 3; text-align: left; margin-left: 10px;}
 }
