@@ -1,10 +1,15 @@
-import os
-from typing import List, Literal
+import os, json
+from typing import Literal
 from flask import Flask, redirect, render_template, request, make_response, send_file
-import json
 from datetime import datetime
+from send_notification import send_notification
 
-app = Flask(__name__)
+class CustomFlask(Flask):
+    def __init__(self, import_name: str, **kwargs):
+        super().__init__(import_name, **kwargs)
+        send_notification("server_up")
+
+app = CustomFlask(__name__)
 SCRIPT_FILE = "options/3_overlaps.json"
 OPTIONS = json.load(open(SCRIPT_FILE, "r"))
 
@@ -47,6 +52,7 @@ def vote():
     json.dump(data, open("votes.json", "w"), indent=4)
     
     log(f"{name} voted for {selected_scripts}")
+    send_notification("vote_cast", name)
     return redirect(f"/?name={name}&message=Your+vote+has+been+cast%21%20You+can+change+it+below.")
 
 @app.route("/suggest/", methods=["GET", "POST"])
@@ -62,6 +68,7 @@ def suggest():
         json.dump(list(scripts), open("suggested_scripts.json", "w"))
         
         log(f"{script_name} was suggested")
+        send_notification("suggestion_made", script_name) #type:ignore
         return redirect(f"/suggest?message=%27{script_name}%27+suggested")
     else:
         log(f"Method {method} was used on /suggest/", "error")

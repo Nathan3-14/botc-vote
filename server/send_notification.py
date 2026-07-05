@@ -1,24 +1,38 @@
-def send_notification(notification: str) -> None:
-    match notification:
-        case "server_up":
-            ...
-        case "server_down":
-            ...
-        case "vote_cast":
-            ...
-        case "suggestion_made":
-            ...
-
-
 import requests
 
 url = "https://ntfy.sh/botc-vote-BVegUd2mWC"
-#TODO upload some images to botc / botc-vote repo as pngs
-requests.post(
-    url,
-    data="A23456789B23456789C23456789D23456789E23456789F23456789",
-    headers={
-        "Title": "Title Here..."
-        # "Icon": "https://release.botc.app/resources/characters/generic/fabled.webp"
-    }
-)
+
+def send_notification(notification_id: str, name: str="") -> None:
+    data = "err"
+    headers = {"Title": "invalid notification id supplied"}
+    match notification_id:
+        case "server_up":
+            data = "Server Started Successfully"
+            headers = {
+                "Icon": "https://github.com/Nathan3-14/botc/blob/main/icons/other/fabled.png?raw=true",
+                "Priority": "low",
+                "Click": "https://nathan3-14.github.io/botc/vote/"
+            }
+        case "server_down":
+            data = "Server Shut Down Successfully"
+            headers = {
+                "Icon": "https://github.com/Nathan3-14/botc/blob/main/icons/other/fabled.png?raw=true",
+                "Priority": "low"
+            }
+        case "vote_cast":
+            data = f"{name} has voted"
+            headers = {
+                "Icon": "https://github.com/Nathan3-14/botc/blob/main/icons/other/legion_good.png?raw=true",
+                "Click": "https://nathan3-14.github.io/botc/vote/results",
+                "Priority": "low"
+            }
+        case "suggestion_made":
+            data = f"{name} has been suggested"
+            headers = {
+                "Icon": "https://github.com/Nathan3-14/botc/blob/main/icons/other/loric.png?raw=true",
+                "Click": "https://nathan3-14.github.io/botc/vote/suggest"
+            }
+    requests.post(url, data=data, headers=headers)
+
+if __name__ == "__main__":
+    send_notification("server_down")
