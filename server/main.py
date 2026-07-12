@@ -10,7 +10,7 @@ class CustomFlask(Flask):
         send_notification("server_up")
 
 app = CustomFlask(__name__)
-SCRIPT_FILE = "options/3_overlaps.json"
+SCRIPT_FILE = "options/3_overlaps_reduced.json"
 OPTIONS = json.load(open(SCRIPT_FILE, "r"))
 
 UNIQUE_SCRIPTS = set([])
@@ -57,6 +57,8 @@ def vote():
 
 @app.route("/suggest/", methods=["GET", "POST"])
 def suggest():
+    return "<h1>No more suggestions are being accepted</h1><br><a href=\"/\">Home</a>"
+    
     method = request.method
     if method == "GET":
         return render_template("suggest.jinja", message=request.args.get("message", ""))
