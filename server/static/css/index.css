@@ -1,0 +1,8 @@
+.script-characters {
+    display: grid;
+    grid-template-columns: 110px 110px 110px 110px 110px;
+    grid-template-rows: 20px 20px 20px 20px 20px;
+}
+
+h2 {scroll-margin-top: 13vh}
+@media (max-width: 800px) {h2 {scroll-margin-top: 12vh}}

@@ -13,6 +13,7 @@ app = CustomFlask(__name__)
 SCRIPT_FILE = "options/3_overlaps_reduced.json"
 OPTIONS = json.load(open(SCRIPT_FILE, "r"))
 
+
 UNIQUE_SCRIPTS = set([])
 for item in OPTIONS:
     for sub_item in item.split(", "):
@@ -40,7 +41,8 @@ def index():
             current_votes = json.load(open("votes.json", "r"))[name]
         except KeyError:
             pass
-    return render_template("index.jinja", available_scripts=OPTIONS, name=name, current_votes=current_votes, message=request.args.get("message", ""))
+    return render_template("index.jinja", message=request.args.get("message", ""))
+    # return render_template("index.jinja", available_scripts=OPTIONS, name=name, current_votes=current_votes, message=request.args.get("message", ""))
 
 @app.route("/vote/", methods=["POST"])
 def vote():
@@ -57,6 +59,7 @@ def vote():
 
 @app.route("/suggest/", methods=["GET", "POST"])
 def suggest():
+    return redirect(f"/?message=You+have+been+redirected")
     return "<h1>No more suggestions are being accepted</h1><br><a href=\"/\">Home</a>"
     
     method = request.method
@@ -78,6 +81,7 @@ def suggest():
 
 @app.route("/results/")
 def results():
+    return redirect(f"/?message=You+have+been+redirected")
     vote_totals = {}
     for _voter, votes in json.load(open("votes.json", "r")).items():
         for voted_for_script in votes:

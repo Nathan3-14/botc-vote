@@ -1,9 +1,33 @@
 {%extends "base.jinja"%}
 
+{% block head %}<link rel="stylesheet" href="/static/css/index.css">{% endblock %}
 {% block title %}Vote!{% endblock %}
 
 {% block body %}
-<h2>Pick your Favourite Scripts!</h2>
+<h1>The votes are in!</h1>
+<p>The winning scripts are
+<a href="#storyteller's-nightmare">Storyteller's Nightmare</a>
+<a href="#pies-baking">Pies Baking</a>
+<a href="#immortal-dance-party">Immortal Dance Party</a>
+</p>
+
+<div>
+    <h2 id="storyteller's-nightmare">Storyteller's Nightmare</h2>
+    <img src="/scripts/storyteller's_nightmare" width="500px" />
+</div>
+
+<div>
+    <h2 id="pies-baking">Pies Baking</h2>
+    <img src="/scripts/pies_baking" width="500px" />
+</div>
+
+<div>
+    <h2 id="immortal-dance-party">Immortal Dance Party</h2>
+    <img src="/scripts/immortal_dance_party" width="500px" />
+</div>
+
+
+{# <h2>Pick your Favourite Scripts!</h2>
 <h3>Select as many as you like!</h3>
 <h3>See the results <a href="/results">here!</a></h3>
 <p>Click <a href="/scripts">here</a> for more information on available scripts</p>
@@ -24,5 +48,5 @@
     <p style="color:red"><span style="font-weight: bold">WARNING</span><br>Casting votes overrides any previous ones of the same name.</p><br>
     <input type="submit" value="Cast Vote!">
 </form>
-<script src="/static/js/filter.js"></script>
+<script src="/static/js/filter.js"></script> #}
 {% endblock %}
